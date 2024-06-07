@@ -15,7 +15,7 @@ const Stopwatch = () => {
       clearInterval(intervalRef.current);
     }
     return () => clearInterval(intervalRef.current);
-  }, [running]);
+  }, [running, time]);
 
   const startHandler = () => {
     setRunning(true);
@@ -34,7 +34,7 @@ const Stopwatch = () => {
     const hours = Math.floor(time / 3600);
     const minutes = Math.floor((time % 3600) / 60);
     const seconds = time % 60;
-    return `${hours > 0 ? `${hours}:` : ''}${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+    return ` ${hours > 0 ? `${hours}:` : ''}${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
   };
 
   return (
@@ -60,19 +60,8 @@ const Stopwatch = () => {
             fontFamily: "revert-layer",
           }}
         >
-          Time
+          Time: {formatTime(time)}
         </h2>
-        <h1
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            fontSize: "250px",
-            marginTop: "35px",
-            color: "wheat",
-          }}
-        >
-          {formatTime(time)}
-        </h1>
       </div>
 
       <div
